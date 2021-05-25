@@ -80,6 +80,34 @@ document.querySelector('#btn-reject-promise').addEventListener('click', () => {
 
 // Task 06
 // Используйте предыдущее задание. Продублируйте строчку с методом then
+/*const handlePromise = {
+    promise: null,
+    resolve: null,
+    reject: null,
+    onSuccess: paramName => console.log(`Promise is resolved with data: ${paramName}`),
+    onError: paramName => console.log(`Promise is rejected with error: ${paramName}`)
+};
+
+document.querySelector('#btn-create-promise').addEventListener('click', () => {
+    handlePromise.promise = new Promise((resolve, reject) => {
+        handlePromise.resolve = resolve;
+        handlePromise.reject = reject;
+
+        console.log('Promise created');
+    });
+
+    handlePromise.promise
+    .then(handlePromise.onSuccess, handlePromise.onError)
+    .then(handlePromise.onSuccess, handlePromise.onError);
+});
+
+document.querySelector('#btn-resolve-promise').addEventListener('click', () => {
+    handlePromise.resolve('Promise resolved');
+});
+
+document.querySelector('#btn-reject-promise').addEventListener('click', () => {
+    handlePromise.reject('Promise rejected');
+});*/
 
 
 // Task 07
@@ -121,13 +149,19 @@ p8.then(onSuccess).then(print).catch(error => { console.log(`Caught error ${erro
 // значение промиса и выводит его в консоль
 // Объявите объект со свойтвом name и значением Anna.
 // Создайте врапер для этого объекта и вызовите для него функцию getPromiseData
-const getPromiseData = promise => {
-    promise.then(console.log);
+/*const getPromiseData = promise => {
+    promise.then(console.log, console.log);
 };
 
 const user = {
     name: 'Anna'
 };
+
+const p9 = new Promise(resolve => setTimeout(() => resolve(user), 5000));
+
+getPromiseData(p9);*/
+
+
 
 
 
