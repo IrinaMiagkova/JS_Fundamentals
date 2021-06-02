@@ -2,18 +2,18 @@ console.log('Topic: Promises');
 // Task 01
 // Создайте промис, который постоянно находиться в состоянии pending.
 // В конструкторе промиса выведите в консоль сообщение "Promise is created".
-/* const p1 = new Promise(() => {
+/*const p1 = new Promise(() => {
     console.log("Promise is created");
-}); */
+});*/
 
 
 // Task 02
 // Создайте промис, который после создания сразу же переходит в состояние resolve
 // и возвращает строку 'Promise Data'
 // Получите данные промиса и выведите их в консоль
-/* const p2 = Promise.resolve('Promise Data');
+/*const p2 = Promise.resolve('Promise Data');
 
-p2.then(console.log); */
+p2.then(console.log);*/
 
 
 
@@ -50,26 +50,7 @@ p4.then(console.log); */
 // описаного выше объекта: свойство promise получает новый созданный промис,
 // свойства resolve и reject получают ссылки на соответствующие функции
 // resolve и reject. Следующие два обработчика запускают методы resolve и reject.
-/* const handlePromise = {
-    promise: null,
-    resolve: null,
-    reject: null,
-    onSuccess: paramName => console.log(`Promise is resolved with data: ${paramName}`),
-    onError: paramName => console.log(`Promise is rejected with error: ${paramName}`)
-};
-
-document.querySelector('#btn-resolve-promise').addEventListener('click', () => {
-    handlePromise.resolve('Promise resolved');
-});
-
-document.querySelector('#btn-reject-promise').addEventListener('click', () => {
-    handlePromise.reject('Promise rejected');
-}); */
-
-
-// Task 06
-// Используйте предыдущее задание. Продублируйте строчку с методом then
-/* const handlePromise = {
+/*const handlePromise = {
     promise: null,
     resolve: null,
     reject: null,
@@ -85,24 +66,48 @@ document.querySelector('#btn-create-promise').addEventListener('click', () => {
         console.log('Promise created');
     });
 
-    handlePromise.promise.then(console.log, console.log);
+    handlePromise.promise.then(handlePromise.onSuccess, handlePromise.onError);
 });
 
 document.querySelector('#btn-resolve-promise').addEventListener('click', () => {
-    if (!handlePromise.resolve) {
-        return;
-    }
-
     handlePromise.resolve('Promise resolved');
 });
 
 document.querySelector('#btn-reject-promise').addEventListener('click', () => {
-    if (!handlePromise.reject) {
-        return;
-    }
-
     handlePromise.reject('Promise rejected');
-}); */
+});*/
+
+
+// Task 06
+// Используйте предыдущее задание. Продублируйте строчку с методом then
+/*const handlePromise = {
+    promise: null,
+    resolve: null,
+    reject: null,
+    onSuccess: paramName => console.log(`Promise is resolved with data: ${paramName}`),
+    onError: paramName => console.log(`Promise is rejected with error: ${paramName}`)
+};
+
+document.querySelector('#btn-create-promise').addEventListener('click', () => {
+    handlePromise.promise = new Promise((resolve, reject) => {
+        handlePromise.resolve = resolve;
+        handlePromise.reject = reject;
+
+        console.log('Promise created');
+    });
+
+    handlePromise.promise
+    .then(handlePromise.onSuccess, handlePromise.onError)
+    .then(handlePromise.onSuccess, handlePromise.onError);
+});
+
+document.querySelector('#btn-resolve-promise').addEventListener('click', () => {
+    handlePromise.resolve('Promise resolved');
+});
+
+document.querySelector('#btn-reject-promise').addEventListener('click', () => {
+    handlePromise.reject('Promise rejected');
+});*/
 
 
 // Task 07
@@ -111,21 +116,21 @@ document.querySelector('#btn-reject-promise').addEventListener('click', () => {
 // прибавляет к нему Ваше имя и возвращает новую строку из функции
 // Создайте функцию print, которая выводит в консоль значение своего параметра
 // Добавьте два метода then и зарегистрируйте созданные функции.
-/* const p7 = new Promise(resolve => {
+/*const p7 = new Promise(resolve => {
     setTimeout(() => resolve('My name is'), 1000);
 });
 
 const onSuccess = value => `${value} Irina`;
-const print = value => { console.log(value) };
+const print = console.log;
 
-p7.then(onSuccess).then(print); */
+p7.then(onSuccess).then(print);*/
 
 
 // Task 08
 // Используйте предыдущий код. Добавьте в функци onSuccess генерацию исключения
 // Обработайте даное исключение, используя catch. Обратите внимание,
 // что метод print при этом не выполняется.
-/* const p8 = new Promise(resolve => {
+/*const p8 = new Promise(resolve => {
     setTimeout(() => resolve('My name is'), 1000);
 });
 
@@ -134,9 +139,9 @@ const onSuccess = value => {
 
     return `${value} Irina`;
 };
-const print = value => { console.log(value) };
+const print = console.log;
 
-p8.then(onSuccess).then(print).catch(error => { console.log(`Cought error ${error}`) }); */
+p8.then(onSuccess).then(print).catch(error => { console.log(`Caught error ${error}`) });*/
 
 
 // Task 09
@@ -144,13 +149,20 @@ p8.then(onSuccess).then(print).catch(error => { console.log(`Cought error ${erro
 // значение промиса и выводит его в консоль
 // Объявите объект со свойтвом name и значением Anna.
 // Создайте врапер для этого объекта и вызовите для него функцию getPromiseData
-const getPromiseData = promise => {
-
+/*const getPromiseData = promise => {
+    promise.then(console.log, console.log);
 };
 
-const obj = {
+const user = {
     name: 'Anna'
 };
+
+const p9 = new Promise(resolve => setTimeout(() => resolve(user), 5000));
+
+getPromiseData(p9);*/
+
+
+
 
 
 // Task 10
@@ -158,7 +170,7 @@ const obj = {
 // а второй промис возвращает объект {age: 16} через 3 с.
 // Получите результаты работы двух промисов, объедините свойства объектов
 // и выведите в консоль
-/* const p10_1 = new Promise(resolve => {
+/*const p10_1 = new Promise(resolve => {
     setTimeout(() => resolve({ name: "Anna" }), 2000);
 });
 
@@ -168,14 +180,14 @@ const p10_2 = new Promise(resolve => {
 
 Promise.all([p10_1, p10_2]).then(result => {
     console.dir(Object.assign({}, ...result));
-}); */
+});*/
 
 
 // Task 11
 // Используйте предыдущее задание. Пусть теперь второй промис переходит в
 // состояние rejected со значением "Promise Error". Измените код, чтобы обработать
 // эту ситуацию.
-/* const p11_1 = new Promise(resolve => {
+/*const p11_1 = new Promise(resolve => {
     setTimeout(() => resolve({ name: "Anna" }), 2000);
 });
 
@@ -187,7 +199,7 @@ Promise.all([p11_1, p11_2])
 .then(result => {
     console.dir(Object.assign({}, ...result));
 })
-.catch(error => { console.log(`Cought error ${error}`) }); */
+.catch(error => { console.log(`Caught error ${error}`) });*/
 
 
 // Task 12
@@ -206,9 +218,9 @@ Promise.all([p11_1, p11_2])
 });
 
 const p12_2 = new Promise((resolve, reject) => {
-    document.querySelector('#btn-cancel-promise').addEventListener('click', () => reject('Promise 2 rejected'));
+    document.querySelector('#btn-cancel-promise').addEventListener('click', () => {reject('Promise 2 rejected')});
     console.log('Promise 2 created');
 });
 
 Promise.race([p12_1, p12_2])
-.catch(error => console.log(`Cought error ${error}`));*/
+.catch(error => console.log(`Caught error ${error}`));*/
