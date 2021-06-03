@@ -174,7 +174,7 @@ for (let v of Fib) {
 Number.prototype[Symbol.iterator] = function() {
     const number = this.valueOf();
     const numberAbs = Math.abs(number);
-    const numberSign = Math.sign(number) || 1;
+    const numberSign = Math.sign(number) || 1; // 1 for zero
     let current = 0;
 
     return {

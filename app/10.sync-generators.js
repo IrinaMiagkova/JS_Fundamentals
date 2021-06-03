@@ -4,6 +4,15 @@ console.log('Topic: Sync-Generators');
 // RU: Наишите функцию-генератор generateSequence, которая генерирует числа в диапазоне от start до end.
 // EN: Create function-generator generateSequence, which generates and returns numbers from start to end.
 
+/*const generateSequence = function*(start, end) {
+    for (let i = start; i <= end; i++) {
+        yield i;
+    }
+};
+
+const seq = generateSequence(3, 10);
+console.log([...seq]);*/
+
 
 // Task 2. Long Sequences
 // RU: Создать массив из чисел от 1 до 1000. 
@@ -13,6 +22,26 @@ console.log('Topic: Sync-Generators');
 // EN: Create an array of numbers from 1 to 1000.
 //     Implement a generator function to create all pairs from this array.
 //     Result [1, 1], [1, 2], ..., [2, 1], [2, 2], ..., [1000, 1000]
+
+const a = [];
+for (let i = 1; i <= 1000; i++) {
+    a.push(i);
+}
+
+const generateSequence = function*(arr) {
+    for (let i = 0; i <= arr.length - 1; i++) {
+        for (let j = 0; j <= arr.length - 1; j++) {
+            yield [arr[i], arr[j]];
+        }
+    }
+};
+
+const seq = generateSequence(a);
+console.log(seq.next().value);
+console.log(seq.next().value);
+console.log(seq.next().value);
+console.log(seq.next().value);
+console.log(seq.next().value);
 
 
 // Task 3. 
